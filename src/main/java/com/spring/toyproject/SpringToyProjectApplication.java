@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringToyProjectApplication {
-
     public static void main(String[] args) {
-        SpringApplication.run(SpringToyProjectApplication.class, args);
-    }
 
+        SpringApplication.run(SpringToyProjectApplication.class, args);
+
+    }
 }
