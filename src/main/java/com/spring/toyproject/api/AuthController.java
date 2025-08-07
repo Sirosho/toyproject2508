@@ -28,9 +28,11 @@ public class AuthController {
      * POST : /api/auth/signup
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequest requestDto) {
-        log.info("회원가입 요청: {}", requestDto.getUsername());
+    public ResponseEntity<?> signup(
+            @Valid @RequestBody SignUpRequest requestDto
+    ) {
 
+        log.info("회원가입 요청: {}", requestDto.getUsername());
 
         UserResponse response = userService.signup(requestDto);
 
@@ -39,36 +41,22 @@ public class AuthController {
                 .body(
                         ApiResponse.success("회원가입이 성공적으로 완료되었습니다.", response)
                 );
-
     }
 
-    /*
-    *  로그인 API - GET방식은 URL에 파라미터가 노출될 가능성이 높음
-    *  POST /api/auth/login
-    * */
+    /**
+     * 로그인 API - GET방식은 URL에 파라미터가 노출될 가능성이 높음
+     * POST /api/auth/login
+     */
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest requestDto) {
 
-        log.info("로그인 요청: {}",requestDto.getUsernameOrEmail());
+        log.info("로그인 요청: {}", requestDto.getUsernameOrEmail());
 
         AuthResponse response = userService.authenticate(requestDto);
 
         return ResponseEntity.ok().body(
-                ApiResponse.success("로그인이 완료되었습니다.",response)
+                ApiResponse.success("로그인이 완료되었습니다.", response)
         );
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }

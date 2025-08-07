@@ -94,12 +94,10 @@ public class UserService {
 
         // 로그인 성공시 해야할 로직 - 토큰 발급
         String token = jwtProvider.generateToken(user.getUsername());
-        log.info("사용자 로그인: {}",user.getUsername());
+        log.info("사용자 로그인: {}", user.getUsername());
 
-        // 발급 후 클라이언트에게 전송
+        // 발급 후? -> 클라이언트에게 전송
         return AuthResponse.of(token, UserResponse.from(user));
-
-
     }
 
 }
