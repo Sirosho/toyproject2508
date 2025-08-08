@@ -1,5 +1,6 @@
 import { apiService } from '../utils/api.js';
 import { utils } from '../utils/util.js';
+import {authService} from '../utils/auth.js';
 
 
 // 로그인 관련 함수들의 모음
@@ -25,6 +26,10 @@ const LoginPage = () => {
             // sessionStorage : 브라우저를 닫을때까지 로그인 유지
             localStorage.setItem('token',response.data.token);
             localStorage.setItem('user',JSON.stringify(response.data.user));
+
+            // header의 인증 UI 업데이트
+            authService.updateHeaderUI();
+
 
 
             utils.showMessage(response.message, 'success');
