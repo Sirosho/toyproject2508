@@ -22,7 +22,7 @@ import {showAlert} from './utils/common.js'
 // 라우트 가드 함수
 const checkRouteAccess = (requiresAuth) => {
     // requiresAuth는 정적으로 페이지 진입이 인증이 필요한지를 표현하는 변수
-    // 동적으로는 로그인이 되었을 떄 가드처리를 수행하면 안된다.
+    // 동적으로는 로그인이 되었을 때 가드처리를 수행하면 안된다.
 
 
     if (requiresAuth && !authService.isAuthenticated()){

@@ -38,6 +38,12 @@ public class PageController {
     public String trips() {
         return "trip-list";
     }
+    // 여행 등록 페이지
+    @GetMapping("/trips/new")
+    public String tripForm() {
+        return "trip-form";
+    }
+
 
 
 

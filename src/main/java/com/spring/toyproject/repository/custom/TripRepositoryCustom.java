@@ -20,7 +20,7 @@ import java.util.List;
 public interface TripRepositoryCustom {
 
     // 동적 쿼리로 검색 조건별 여행 목록 조회 메서드 (페이징 포함)
-    Page<Trip> findTripsByUser(User user, TripSearchCondition condition, Pageable pageable);
+    Page<Trip> getTripList(User user, TripSearchCondition condition, Pageable pageable);
 
     /**
      *  여행 검색 조건들을 담는 클래스
