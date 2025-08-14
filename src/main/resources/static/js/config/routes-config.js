@@ -28,4 +28,9 @@ export const PAGE_CONFIG = {
         module: 'trip-form',
         requiresAuth: true
     },
+    '/travel-logs/new': {
+        module: 'trip-log-form',
+        requiresAuth: true
+    },
+
 };

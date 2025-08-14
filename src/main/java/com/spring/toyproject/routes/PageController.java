@@ -43,6 +43,11 @@ public class PageController {
     public String tripForm() {
         return "trip-form";
     }
+    // 여행 일지 등록 페이지
+    @GetMapping("/travel-logs/new")
+    public String travelLogForm() {
+        return "travel-log-form";
+    }
 
 
 
