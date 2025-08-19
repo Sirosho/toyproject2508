@@ -17,11 +17,13 @@ public class PageController {
     public String home() {
         return "index";
     }
+
     // 로그인페이지으로 이동
     @GetMapping("/login")
     public String login() {
         return "login";
     }
+
     // 회원가입 페이지로 이동
     @GetMapping("/signup")
     public String signup() {
@@ -58,4 +60,21 @@ public class PageController {
     public String travelForm() {
         return "travel-log-form";
     }
+
+    // 여행 일지목록 페이지
+    @GetMapping("/travel-logs")
+    public String travelList() {
+        return "travel-log-list";
+    }
+
+    // 여행 일지 상세보기 페이지
+    @GetMapping("/travel-logs/detail")
+    public String travelDetail() {
+
+        return "travel-log-detail";
+    }
+
+
 }
+
+
