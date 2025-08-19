@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/toy_project
+    url: jdbc:mariadb://localhost:3306/toy_project_clone
     username: root
     password: mariadb
   jpa:
@@ -13,42 +13,30 @@ spring:
         dialect: org.hibernate.dialect.MariaDBDialect
         show_sql: true
 
-
 server:
   port: 9003
+
 logging:
   level:
     com.spring.toyproject: DEBUG
+    # SQL ??
     org.hibernate.SQL: DEBUG
-    # ????? ?? ????? ?? ??
+    # ?? ???? ????
     org.springframework.web: DEBUG
     # SQL ???? ??? ??
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
-    # jwt setting
 
+# jwt setting
 jwt:
-    # secret Key (실제 운영에서는 환경변수로 관리)
-   secret: myxuakuq5bbzKxFGlAx4VfR2obwvxuYm5iGJVqfq684=
-    # 만료시간 (밀리초) - 24시간
-   expiration: 86400000
+  # secret key (실제 운영에서는 환경변수로 관리)
+  secret: xgvlyEyY3xOXlr2zKK74vzNx53hSNY6I8Pffbd7AiuY=
+  # 만료시간 (밀리초) - 24시간
+  expiration: 86400000
+
+
 
 # 파일 업로드 루트 경로 설정
 file:
   upload:
     location: ${user.home}/travels/uploads/
-    # userhome은 C:/Users/user
-
-
-
-
-
-
-
-
-
-
-
-
-
-

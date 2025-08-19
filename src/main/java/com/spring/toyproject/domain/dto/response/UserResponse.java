@@ -21,7 +21,7 @@ public class UserResponse {
     private LocalDateTime createdAt;
 
     /**
-     * User 엔티티를 UserResponseDto로 변환
+     * User 엔티티를 UserResponse로 변환
      */
     public static UserResponse from(User user) {
         return UserResponse.builder()
@@ -32,4 +32,3 @@ public class UserResponse {
                 .build();
     }
 }
-

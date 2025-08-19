@@ -13,7 +13,6 @@ import java.io.File;
 @Setter
 public class FileUploadConfig {
 
-    // yml의 설정을 읽는 어노테이션
     @Value("${file.upload.location}")
     private String location;
 

@@ -32,5 +32,4 @@ public enum TagCategory {
 
     private final String description;
 
-
 }

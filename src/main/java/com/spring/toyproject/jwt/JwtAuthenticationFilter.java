@@ -1,13 +1,5 @@
 package com.spring.toyproject.jwt;
 
-
-
-
-/*
- *  JWT 인증 필터
- *  클라이언트 모든 요청에 대해 토큰을 검사하는 자동화된 필터
- * */
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +17,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JWT 인증 필터
+ * 클라이언트 모든 요청에 대해 토큰을 검사하는 자동화된 필터
+ */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -32,41 +28,37 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtProvider jwtProvider;
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            // 클라이언트의 요청에서 들어온 토큰을 뜯어와야함
+            // 클라이언트의 요청에서 들어온 토큰을 뜯어와야함.
             String token = extractTokenFromHeader(request);
 
-            // 서명 , 토큰 위조 검사
-            if(jwtProvider.validateToken(token)){
-                // 토큰 검증 성공 -> 토큰을 통해 유저 정보를 조회
+            // 서명, 토큰 위조 검사
+            if (jwtProvider.validateToken(token)) {
+                // 토큰에서 사용자명을 추출
                 String username = jwtProvider.getUsernameFromToken(token);
 
                 // 시큐리티에게 알려줄 인증정보(사용자명, 권한) 생성
                 UsernamePasswordAuthenticationToken auth
                         = new UsernamePasswordAuthenticationToken(
-                                username // Principal: 컨트롤러가 사용할 인즈된 유저의 식별자
-                        ,null // 비밀번호 저장: 일반적으로 저장안함
-                        ,new ArrayList<>()
-//                        , List.of(new SimpleGrantedAuthority("COMMON")) 권한등급이 있다면 권한부여
+                        username   // Principal: 컨트롤러가 사용할 인증된 유저의 식별자
+                        , null // 비밀번호 저장: 일반적으로 저장 안함
+                        , new ArrayList<>()
                 );
 
 
                 // 스프링 시큐리티에게 인증 성공을 알려줌
                 SecurityContextHolder.getContext().setAuthentication(auth);
-                log.debug("JWT 인증 성공: {}",username);
-
+                log.debug("JWT 인증 성공: {}", username);
             }
 
         } catch (Exception e) {
-            log.error("JWT 인증오류 발생: {}", e.getMessage());
+            log.error("JWT 인증 오류 발생: {}", e.getMessage());
         }
 
         // 다음 필터로 요청 전달
         filterChain.doFilter(request, response);
-
 
     }
 
@@ -75,11 +67,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String bearerToken = request.getHeader("Authorization");
 
         // 2. 토큰을 파싱하면 앞에 접두사로 Bearer가 붙는데 이를 제거
-        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")){
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
             return bearerToken.substring(7);
         }
         return null;
     }
-
-
 }

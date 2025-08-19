@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-@DataJpaTest // DB 테스트를 위한 간소설정 (속도가 @SpringBootTest에 비해 월등히 빠름)
+@DataJpaTest   // DB 테스트를 위한 간소설정 (속도가 @SpringBootTest에 비해 월등히 빠름)
 @ActiveProfiles("test") // application-test.yml을 읽어라
 class UserRepositoryTest {
 
@@ -24,11 +24,13 @@ class UserRepositoryTest {
         User user = User.builder()
                 .username("testUser")
                 .email("test@example.com")
-                .password("asdf123123")
+                .password("password123")
                 .build();
 
         userRepository.save(user);
     }
+
+
     @Test
     @DisplayName("사용자명으로 조회 테스트")
     void findByUsernameTest() {
@@ -41,18 +43,23 @@ class UserRepositoryTest {
         assertEquals("test@example.com", foundUser.getEmail());
     }
 
-
     @Test
-    @DisplayName("사용자명으로 조회 테스트")
+    @DisplayName("이메일로 조회 테스트")
     void findByEmailTest() {
         //given
         String email = "test@example.com";
         //when
-        User foundUser = userRepository.findByUsername(email).orElseThrow();
+        User foundUser = userRepository.findByEmail(email).orElseThrow();
+
         //then
-        assertNotNull(foundUser);
-        assertEquals("testUser", foundUser.getUsername());
+//        assertNotNull(foundUser); // JUnit5
+        assertThat(foundUser).isNotNull(); // JUnit4
+
+//        assertEquals("testUser", foundUser.getUsername()); // JUnit5
+        assertThat(foundUser.getUsername()).isEqualTo("testUser"); // JUnit4
     }
+
+
     @Test
     @DisplayName("사용자명 중복확인 테스트")
     void existsUsernameTest() {
@@ -61,8 +68,8 @@ class UserRepositoryTest {
         //when
         boolean flag = userRepository.existsByUsername(username);
         //then
-
-        assertFalse(flag);
+        assertThat(flag).isFalse();
+//        assertFalse(flag);
     }
 
     @Test
@@ -73,8 +80,9 @@ class UserRepositoryTest {
         //when
         boolean flag = userRepository.existsByEmail(email);
         //then
-
-        assertFalse(flag);
+        assertThat(flag).isTrue();
+//        assertFalse(flag);
     }
+
 
 }

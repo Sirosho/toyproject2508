@@ -4,33 +4,37 @@
   requiresAuth: 인증된 사용자만 들어오는 페이지인지 여부
  */
 export const PAGE_CONFIG = {
-    '/': {
-        module: 'home',
-        requiresAuth: false,
-    },
-    '/login': {
-        module: 'login',
-        requiresAuth: false,
-    },
-    '/signup': {
-        module: 'signup',
-        requiresAuth: false,
-    },
-    '/dashboard': {
-        module: 'dashboard',
-        requiresAuth: true,
-    },
-    '/trips': {
-        module: 'trip-list',
-        requiresAuth: true,
-    },
-    '/trips/new': {
-        module: 'trip-form',
-        requiresAuth: true
-    },
-    '/travel-logs/new': {
-        module: 'trip-log-form',
-        requiresAuth: true
-    },
+  '/': {
+    module: 'home',
+    requiresAuth: false,
+  },
+  '/login': {
+    module: 'login',
+    requiresAuth: false,
+  },
+  '/signup': {
+    module: 'signup',
+    requiresAuth: false,
+  },
+  '/dashboard': {
+    module: 'dashboard',
+    requiresAuth: true,
+  },
+  '/trips': {
+    module: 'trip-list',
+    requiresAuth: true,
+  },
+  '/trips/new': {
+    module: 'trip-form',
+    requiresAuth: true
+  },
+  '/trips/detail': {
+    module: 'trip-detail',
+    requiresAuth: true
+  },
 
+  '/travel-logs/new': {
+    module: 'travel-log-form',
+    requiresAuth: true
+  },
 };

@@ -14,12 +14,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "tbl_user")
 @Getter
-@ToString
-@EqualsAndHashCode(of = "id") // 이건 뭐지
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // 이건뭐지
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,17 +42,12 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-
-    // AllArgs 대신에 따로 생성자를 하나 만듦
-    // 클래스 자체에 Builder를 쓰면 ALLarg
-    // 대상이 되기때문에 중요정보 조작이 가능해져서 위험함
+    // AllArgs대신에 따로 생성자를 하나 만듦
     @Builder
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
-
-
 
 }

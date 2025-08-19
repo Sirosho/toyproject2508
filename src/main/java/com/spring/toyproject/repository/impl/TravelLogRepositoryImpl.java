@@ -95,13 +95,13 @@ public class TravelLogRepositoryImpl implements TravelLogRepositoryCustom {
                     .fetch();
         }
 
-        long total = queryFactory
+        Long total = queryFactory
                 .select(travelLog.count())
                 .from(travelLog)
                 .where(whereClause)
                 .fetchOne();
 
-        return new PageImpl<>(content, pageable, total);
+        return new PageImpl<>(content, pageable, total == null ? 0 : total);
     }
 
     @Override
@@ -134,14 +134,14 @@ public class TravelLogRepositoryImpl implements TravelLogRepositoryCustom {
                     .fetch();
         }
 
-        long total = queryFactory
+        Long total = queryFactory
                 .select(travelLog.count())
                 .from(travelLog)
                 .innerJoin(travelLog.trip, trip)
                 .where(whereClause)
                 .fetchOne();
 
-        return new PageImpl<>(content, pageable, total);
+        return new PageImpl<>(content, pageable, total == null ? 0 : total);
     }
 
 
@@ -334,4 +334,3 @@ public class TravelLogRepositoryImpl implements TravelLogRepositoryCustom {
                 .fetch();
     }
 }
-

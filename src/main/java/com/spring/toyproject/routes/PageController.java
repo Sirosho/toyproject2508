@@ -33,25 +33,29 @@ public class PageController {
     public String dashboard() {
         return "dashboard";
     }
-    // 여행 목록 페이지로 이동
+
+    // 여행목록 페이지로 이동
     @GetMapping("/trips")
     public String trips() {
         return "trip-list";
     }
+
     // 여행 등록 페이지
     @GetMapping("/trips/new")
     public String tripForm() {
         return "trip-form";
     }
-    // 여행 일지 등록 페이지
-    @GetMapping("/travel-logs/new")
-    public String travelLogForm() {
-        return "travel-log-form";
+
+    // 여행 상세보기 페이지
+    @GetMapping("/trips/detail")
+    public String tripsDetail() {
+        return "trip-detail";
     }
 
 
-
-
-
-
+    // 여행 일지등록 페이지
+    @GetMapping("/travel-logs/new")
+    public String travelForm() {
+        return "travel-log-form";
+    }
 }

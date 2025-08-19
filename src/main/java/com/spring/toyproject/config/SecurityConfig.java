@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     // 기본 인증 옵션 설정
@@ -47,23 +48,26 @@ public class SecurityConfig {
                                         "/"
                                         , "/login"
                                         , "/signup"
-                                        ,"/trips/**"
-                                        ,"dashboard"
-                                        ,"travel-logs/**"
+                                        , "/trips/**"
+                                        , "/dashboard"
+                                        , "/travel-logs/**"
                                 ).permitAll()
-                                .requestMatchers("/css/**","/js/**","/images/**").permitAll()
+                                .requestMatchers("/css/**", "/js/**", "/images/**", "/favicon.ico", "/uploads/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
 
                                 // 인증 및 권한이 필요한 경로
+//                                .requestMatchers("/api/premium/**").hasAnyAuthority("VIP", "GOLD")
                                 .requestMatchers("/api/**").authenticated()
 
                                 // 기타 경로
                                 // 모든 다른 요청은 인증이 필요하다
                                 .anyRequest().authenticated()
-                )
+                        )
+
+
                 // 커스텀 필터 설정
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-        ;
+                ;
 
         return http.build();
     }

@@ -1,10 +1,6 @@
 package com.spring.toyproject.domain.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -28,8 +24,6 @@ public class TravelLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "travel_log_id")
     private Long id;
-
-
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
@@ -64,7 +58,7 @@ public class TravelLog {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
-//
+
     @OneToMany(mappedBy = "travelLog", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TravelLogTag> travelLogTags = new ArrayList<>();
 
@@ -105,3 +99,4 @@ public class TravelLog {
 
 
 }
+

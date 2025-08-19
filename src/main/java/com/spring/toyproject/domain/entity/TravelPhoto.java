@@ -10,16 +10,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 /*
-*   DB에 실제 사진을 저장하느냐?
-*   NO! db자체에 저장했을때 단점이 훨 많음
-*   -> HDD, RAM, CPU
-*   ->  실무에서는 실제파일은 다른 컴퓨터(파일서버), 나 클라우드 서비스에 저장
-*   DB에는 해당 파일을 찾기 쉽게 파일의 메타데이터(실제저장경로, 파일명)만 저장
-*
-* */
-
-
-
+    DB에 실제 사진을 저장하느냐??
+    NO! DB자체에 저장할 유인이 적다.
+    -> 실제 파일은 다른 컴퓨터(클라우드 서비스)에 저장
+    DB에는 해당 파일을 찾기 쉽게 파일의 메타데이터(실제저장경로, 파일명)만 저장
+ */
 @Entity
 @Table(name = "travel_photos")
 @Getter
@@ -32,7 +27,7 @@ public class TravelPhoto {
     private Long id;
 
     @Column(name = "stored_filename", nullable = false)
-    private String storedFilename; // 저장된 파일면 (해시 암호화)
+    private String storedFilename;  // 저장된 파일명 (해시암호화)
 
     @Column(name = "original_filename", nullable = false)
     private String originalFilename; // 원본 파일명 (나중에 다운로드 받을때 이걸로 재변경)

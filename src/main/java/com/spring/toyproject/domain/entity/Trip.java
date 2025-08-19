@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @Table(name = "trips")
 @Getter
 @NoArgsConstructor
+@ToString(exclude = {"user"})
 public class Trip {
 
     @Id
@@ -64,9 +66,6 @@ public class Trip {
     // 여행일지와의 1:N 관계
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TravelLog> travelLogs = new ArrayList<>();
-
-
-
 
     @Builder
     public Trip(String title, String description, LocalDate startDate, LocalDate endDate, TripStatus status, Long budget, String destination, User user) {

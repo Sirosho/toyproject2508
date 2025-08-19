@@ -8,13 +8,24 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
+
     /**
      * 태그명으로 태그 조회
      */
     Optional<Tag> findByName(String name);
 
     /**
+     * 태그 중복 확인
+     */
+    boolean existsByName(String name);
+
+    /**
      * 카테고리별 태그 목록 조회
      */
     List<Tag> findByCategoryOrderByName(TagCategory category);
+
+    /**
+     * 태그 이름이 포함된 태그 목록 조회
+     */
+    List<Tag> findByNameContainingOrderByName(String keyword);
 }

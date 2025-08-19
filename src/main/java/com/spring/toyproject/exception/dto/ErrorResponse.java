@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 
-// 값이 null인 프로퍼티는 응답에서 제외 (검증오류와 중복오류의 출력값의 종류가 다르기때문에 필요함)
+// 값이 null인 프로퍼티는 응답에서 제외
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
 

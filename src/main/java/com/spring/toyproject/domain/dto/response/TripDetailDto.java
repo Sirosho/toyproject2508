@@ -8,43 +8,45 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
- * 여행 목록 전용 응답 DTO
- * /api/trips 목록 화면 렌더링에 필요한 최소 정보만 포함
+ * 여행 상세 페이지 전용 Compact DTO
+ * trip-detail 페이지에서 실제 사용하는 필드만 포함
  */
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TripListItemDto {
+public class TripDetailDto {
 
     private Long id;
     private String title;
     private String description;
     private LocalDate startDate;
+    private LocalDate endDate;
     private TripStatus status;
     private String statusDescription;
     private TripStatusInfo statusInfo;
     private String destination;
     private Long budget;
-    private int duration;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    public static TripListItemDto from(Trip trip) {
-        return TripListItemDto.builder()
+    public static TripDetailDto from(Trip trip) {
+        return TripDetailDto.builder()
                 .id(trip.getId())
                 .title(trip.getTitle())
                 .description(trip.getDescription())
                 .startDate(trip.getStartDate())
+                .endDate(trip.getEndDate())
                 .status(trip.getStatus())
                 .statusDescription(trip.getStatus().getDescription())
                 .statusInfo(TripStatusInfo.from(trip.getStatus()))
                 .destination(trip.getDestination())
                 .budget(trip.getBudget())
-                .duration(trip.getDuration())
+                .createdAt(trip.getCreatedAt())
+                .updatedAt(trip.getUpdatedAt())
                 .build();
     }
 }
-
-
-

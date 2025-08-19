@@ -34,6 +34,7 @@ public enum ErrorCode {
 
     // 데이터베이스 관련 에러 코드
     DATA_INTEGRITY_VIOLATION("DATA_INTEGRITY_VIOLATION", "데이터 무결성 제약 조건을 위반했습니다.", 400),
+
     // 여행 관련 에러 코드
     TRIP_NOT_FOUND("TRIP_NOT_FOUND", "여행을 찾을 수 없습니다.", 404),
     TRIP_TITLE_ALREADY_EXISTS("TRIP_TITLE_ALREADY_EXISTS", "이미 존재하는 여행 제목입니다.", 409),
@@ -42,11 +43,14 @@ public enum ErrorCode {
     // 여행일지 관련 에러 코드
     TRAVEL_LOG_NOT_FOUND("TRAVEL_LOG_NOT_FOUND", "여행일지를 찾을 수 없습니다.", 404),
     TRAVEL_LOG_ACCESS_DENIED("TRAVEL_LOG_ACCESS_DENIED", "해당 여행일지에 접근할 권한이 없습니다.", 403),
-    TRAVEL_LOG_TITLE_ALREADY_EXISTS("TRAVEL_LOG_TITLE_ALREADY_EXISTS", "이미 존재하는 여행일지 제목입니다.", 409)
+    TRAVEL_LOG_TITLE_ALREADY_EXISTS("TRAVEL_LOG_TITLE_ALREADY_EXISTS", "이미 존재하는 여행일지 제목입니다.", 409),
 
+    // 태그 관련 에러 코드
+    HASHTAG_EXISTS("HASHTAG_EXISTS", "이미 존재하는 해시태그입니다.", 409)
 
 
     ;
+
 
 
     private final String code;
